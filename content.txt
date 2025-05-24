@@ -1,0 +1,23 @@
+const customThumbnail = "https://i.ytimg.com/vi/ow5XgHDkPOQ/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDa6iU3TIWPXovoRbgT1_4TGmKj3A";
+
+// Function to replace all video thumbnails
+function replaceAllThumbnails() {
+  const thumbnails = document.querySelectorAll("a#thumbnail img");
+
+  thumbnails.forEach(img => {
+    img.src = customThumbnail;
+  });
+}
+
+// Run immediately
+replaceAllThumbnails();
+
+// Use MutationObserver to detect dynamically loaded thumbnails
+const observer = new MutationObserver(() => {
+  replaceAllThumbnails();
+});
+
+observer.observe(document.body, {
+  childList: true,
+  subtree: true
+});
